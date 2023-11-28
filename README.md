@@ -4,7 +4,7 @@
 ![What Sticks Logo](/docs/images/wsLogo_200px.png)
 
 ## Description
-What Sticks 10 Library is a collection of custom Python modules designed to support the functionality of the What Sticks platform.
+What Sticks 10 Library is a collection of custom Python packages designed to support the functionality of the What Sticks platform.
 
 ## Installation Instructions
 To install the What Sticks 10 Library, clone the repository and install the required dependencies:
