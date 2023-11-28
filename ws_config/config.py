@@ -84,7 +84,7 @@ class ConfigDev(ConfigBasic):
         super().__init__()
 
         #API
-        self.API_URL = os.env_dict.get("WS_API_URL_BASE_DEVELOPMENT")
+        self.API_URL = env_dict.get("WS_API_URL_BASE_DEVELOPMENT")
 
     DEBUG = True
     TEMPLATES_AUTO_RELOAD = True
@@ -95,7 +95,7 @@ class ConfigProd(ConfigBasic):
         super().__init__()
 
         #API
-        self.API_URL = os.env_dict.get("WS_API_URL_BASE_PRODUCTION")
+        self.API_URL = env_dict.get("WS_API_URL_BASE_PRODUCTION")
 
     DEBUG = False
     TESTING = False
