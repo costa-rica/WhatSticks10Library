@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer, String, Text, Float, DateTime, ForeignKe
     Date
 from datetime import datetime
 
-class AppleHealthExport(Base):
+class AppleHealthExport(Base):# This is used for XML file exported from iPhone
     __tablename__ = 'apple_health_export'
     id = Column(Integer,primary_key = True)
     user_id = Column(Integer, ForeignKey("users.id"))
@@ -38,4 +38,26 @@ class AppleHealthSteps(Base):
     def __repr__(self):
         return f'AppleHealthSteps(id: {self.id}, user_id: {self.user_id},' \
             f'date_time: {self.date_time}, steps_count: {self.steps_count})'
-    
+
+
+class AppleHealhKit(Base):# This is used for XML file exported from iPhone
+    __tablename__ = 'apple_health_kit'
+    id = Column(Integer,primary_key = True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    sampleType = Column(Text)
+    startDate = Column(Text)
+    endDate = Column(Text)
+    metadataAppleHealth = Column(Text)
+    sourceName = Column(Text)
+    sourceVersion = Column(Text)
+    sourceProductType = Column(Text)
+    device = Column(Text)
+    UUID = Column(Text)
+    quantity = Column(Text)
+    value = Column(Text)
+    time_stamp_utc = Column(DateTime, nullable = False, default = datetime.utcnow)
+
+    def __repr__(self):
+        return f'AppleHealhKit(id: {self.id}, user_id: {self.user_id},' \
+            f'sampleType: {self.sampleType}, startDate: {self.startDate}, quantity: {self.quantity},' \
+            f'time_stamp_utc: {self.time_stamp_utc}, UUID: {self.UUID})'
