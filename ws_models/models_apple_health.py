@@ -1,7 +1,7 @@
 # from colorama import Fore
 from .base import Base
 from sqlalchemy import Column, Integer, String, Text, Float, DateTime, ForeignKey, \
-    Date
+    Date, UniqueConstraint
 from datetime import datetime
 
 class AppleHealthExport(Base):# This is used for XML file exported from iPhone
@@ -61,3 +61,8 @@ class AppleHealhKit(Base):# This is used for XML file exported from iPhone
         return f'AppleHealhKit(id: {self.id}, user_id: {self.user_id},' \
             f'sampleType: {self.sampleType}, startDate: {self.startDate}, quantity: {self.quantity},' \
             f'time_stamp_utc: {self.time_stamp_utc}, UUID: {self.UUID})'
+    
+    # Add a UniqueConstraint to the table definition
+    __table_args__ = (
+        UniqueConstraint('user_id', 'sampleType', 'UUID', name='_user_sample_uuid_uc'),
+    )
