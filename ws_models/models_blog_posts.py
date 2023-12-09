@@ -1,16 +1,10 @@
 from .base import Base, sess
-# from sqlalchemy.orm import sessionmaker, Session, relationship
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Text, Float, DateTime, ForeignKey, \
     Date, Boolean
-# from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from datetime import datetime
-# from flask_login import UserMixin
 from .config import config
 import os
-
-# Base_blog_posts = dict_base['Base_blog_posts']
-# sess_blog_posts = dict_sess['sess_blog_posts']
 
 from .models_users import Users
 

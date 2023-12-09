@@ -40,7 +40,7 @@ class AppleHealthSteps(Base):
             f'date_time: {self.date_time}, steps_count: {self.steps_count})'
 
 
-class AppleHealhKit(Base):# This is used for XML file exported from iPhone
+class AppleHealthKit(Base):# This is used for XML file exported from iPhone
     __tablename__ = 'apple_health_kit'
     id = Column(Integer,primary_key = True)
     user_id = Column(Integer, ForeignKey("users.id"))
@@ -58,7 +58,7 @@ class AppleHealhKit(Base):# This is used for XML file exported from iPhone
     time_stamp_utc = Column(DateTime, nullable = False, default = datetime.utcnow)
 
     def __repr__(self):
-        return f'AppleHealhKit(id: {self.id}, user_id: {self.user_id},' \
+        return f'AppleHealthKit(id: {self.id}, user_id: {self.user_id},' \
             f'sampleType: {self.sampleType}, startDate: {self.startDate}, quantity: {self.quantity},' \
             f'time_stamp_utc: {self.time_stamp_utc}, UUID: {self.UUID})'
     
