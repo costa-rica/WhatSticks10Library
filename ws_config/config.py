@@ -26,6 +26,7 @@ class ConfigBasic():
         self.SECRET_KEY = env_dict.get('SECRET_KEY')
         self.WEB_ROOT = os.environ.get('WEB_ROOT')
         self.API_ROOT = os.environ.get('API_ROOT')
+        self.APPLE_SERVICE_ROOT = os.environ.get('APPLE_SERVICE_ROOT')
         
         # Database
         self.DB_ROOT = os.environ.get('DB_ROOT')
