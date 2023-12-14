@@ -14,7 +14,8 @@ def create_user_df(user_id):
     df['endDateFr'] = df['endDate'].apply(convert_to_paris_time)
     # Extract just the date part from startDateFr
     df['dateFr'] = df['startDateFr'].dt.date
-    return df
+    list_of_user_data = list(df.sampleType.unique())
+    return df, list_of_user_data
 
 # Function to convert date from UTC to Paris time
 def convert_to_paris_time(utc_str):
