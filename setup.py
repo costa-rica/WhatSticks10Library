@@ -12,7 +12,7 @@ setup (
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/costa-rica/WhatSticks10Library",
-    packages=['ws_config', 'ws_models'],
+    packages=['ws_config', 'ws_models', 'ws_analysis'],
     python_requires=">=3.7",
     classifiers=[
         "Programming Language :: Python :: 3",
