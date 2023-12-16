@@ -4,6 +4,7 @@ from .utilities import create_user_df
 from .analysis_steps import create_df_daily_steps
 
 def corr_sleep_steps(user_id):
+    print("*** in corr_sleep_steps ***")
     df, list_of_user_data = create_user_df(user_id=user_id)
     if 'HKCategoryTypeIdentifierSleepAnalysis' in list_of_user_data:
         df_daily_sleep = create_df_daily_sleep(df)
@@ -17,6 +18,7 @@ def corr_sleep_steps(user_id):
 
             # Calculate the correlation between step_count and sleepTimeFr
             correlation = df_daily_sleep_steps['step_count'].corr(df_daily_sleep_steps['sleepTimeFr'])
+            print(f"correlation: {correlation}, corr type: {type(correlation)}")
             return correlation
     
     return "insufficient data"
