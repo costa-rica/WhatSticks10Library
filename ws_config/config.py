@@ -37,6 +37,8 @@ class ConfigBasic():
         self.APPLE_HEALTH_DIR = f"{self.DB_ROOT}apple_health"# <-- store Apple Health compressed
         # self.DF_FILES_DIR = f"{self.DB_ROOT}df_files"# <-- store pkl files for dashbaord data item
         self.DASHBOARD_FILES_DIR = f"{self.DB_ROOT}dashboard_files"# <-- store pkl files for dashbaord data item
+        self.DATA_SOURCE_FILES_DIR = f"{self.DB_ROOT}data_source_files"# <-- store pkl files for dashbaord data item
+        self.DATAFRAME_FILES_DIR = f"{self.DB_ROOT}dataframe_files"# <-- store pkl files for dashbaord data item
         self.DIR_DB_BLOG = f"{self.DB_ROOT}blog"# <-- store blog word documents
         self.DIR_DB_NEWS = f"{self.DB_ROOT}news"# <-- store blog word documents
         self.DIR_DB_AUXIILARY = f"{self.DB_ROOT}auxiliary"# <-- store website files
