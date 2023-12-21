@@ -44,7 +44,8 @@ def corr_sleep_steps(df):
 
             # Calculate the correlation between step_count and sleepTimeFr
             correlation = df_daily_sleep_steps['step_count'].corr(df_daily_sleep_steps['sleepTimeFr'])
-            print(f"correlation: {correlation}, corr type: {correlation}")
+            # print(f"correlation: {correlation}, corr type: {correlation}")
+            print(f"df_daily_sleep_steps correlation: {correlation}, corr type: {type(correlation)}")
             return correlation
         else:
             return "insufficient data"
@@ -70,11 +71,11 @@ def corr_sleep_heart_rate(df):
             print("- if len(df_daily_heart_rate) > 5")
 
             # This will keep only the rows that have matching 'dateFr' values in both dataframes
-            df_daily_sleep_steps = pd.merge(df_daily_sleep,df_daily_steps, on='dateFr')
+            df_daily_sleep_heart_rate = pd.merge(df_daily_sleep,df_daily_heart_rate, on='dateFr')
 
             # Calculate the correlation between step_count and sleepTimeFr
-            correlation = df_daily_sleep_steps['step_count'].corr(df_daily_sleep_steps['sleepTimeFr'])
-            print(f"correlation: {correlation}, corr type: {correlation}")
+            correlation = df_daily_sleep_heart_rate['heart_rate_avg'].corr(df_daily_sleep_heart_rate['sleepTimeFr'])
+            print(f"df_daily_sleep_heart_rate correlation: {correlation}, corr type: {type(correlation)}")
             return correlation
         else:
             return "insufficient data"
