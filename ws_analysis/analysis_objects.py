@@ -14,7 +14,7 @@ def user_correlations(user_id):
         # corr_sleep_steps(df)
         arryIndepVarObjects_dict["name"]= "Step Count"
         arryIndepVarObjects_dict["depVarName"]= "Sleep Time"
-        arryIndepVarObjects_dict["correlationValue"]= corr_sleep_steps(df)
+        arryIndepVarObjects_dict["correlationValue"]= str(corr_sleep_steps(df))
         list_of_arryIndepVarObjects_dict.append(arryIndepVarObjects_dict)
 
     if 'HKQuantityTypeIdentifierHeartRate' in list_of_user_data:
@@ -22,7 +22,7 @@ def user_correlations(user_id):
         # corr_sleep_heart_rate(df)
         arryIndepVarObjects_dict["name"]= "Heart Rate Avg"
         arryIndepVarObjects_dict["depVarName"]= "Sleep Time"
-        arryIndepVarObjects_dict["correlationValue"]= corr_sleep_heart_rate(df)
+        arryIndepVarObjects_dict["correlationValue"]= str(corr_sleep_heart_rate(df))
         list_of_arryIndepVarObjects_dict.append(arryIndepVarObjects_dict)
     
     return list_of_arryIndepVarObjects_dict
