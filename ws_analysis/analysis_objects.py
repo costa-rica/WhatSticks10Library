@@ -60,8 +60,13 @@ def corr_sleep_heart_rate(df):
 
     # if 'HKCategoryTypeIdentifierSleepAnalysis' in list_of_user_data:
     df_daily_heart_rate = create_df_daily_heart_rate(df)
+    print(f"- df_daily_heart_rate -")
+    print(f"counte of df_daily_heart_rate: {len(df_daily_heart_rate)}")
+    print(df_daily_heart_rate.head(2))
     try:
+        print("- try corr_sleep_heart_rate")
         if len(df_daily_heart_rate) > 5:# arbitrary minimum
+            print("- if len(df_daily_heart_rate) > 5")
 
             # This will keep only the rows that have matching 'dateFr' values in both dataframes
             df_daily_sleep_steps = pd.merge(df_daily_sleep,df_daily_steps, on='dateFr')
