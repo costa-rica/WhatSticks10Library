@@ -48,7 +48,8 @@ def corr_sleep_steps(df):
             return correlation
         else:
             return "insufficient data"
-    except:
+    except Exception as e:
+        print(f"error in corr_sleep_steps: {e}")
         return "insufficient data"
 
 def corr_sleep_heart_rate(df):
@@ -77,5 +78,6 @@ def corr_sleep_heart_rate(df):
             return correlation
         else:
             return "insufficient data"
-    except:
+    except Exception as e:
+        print(f"error in corr_sleep_heart_rate: {e}")
         return "insufficient data"
