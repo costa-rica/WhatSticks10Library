@@ -82,7 +82,7 @@ def corr_sleep_heart_rate(df):
             correlation = df_daily_sleep_heart_rate['heart_rate_avg'].corr(df_daily_sleep_heart_rate['sleepTimeFr'])
             obs_count = len(df_daily_sleep_heart_rate)
             print(f"df_daily_sleep_heart_rate correlation: {correlation}, corr type: {type(correlation)}")
-            return correlation
+            return correlation, obs_count
         else:
             return "insufficient data", "insufficient data"
     except Exception as e:
