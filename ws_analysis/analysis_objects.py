@@ -6,7 +6,7 @@ from .analysis_heart_rate import create_df_daily_heart_rate
 
 
 def user_correlations(user_id):
-    print("*** in user_correlations ***")
+    print("- in user_correlations ")
     df, list_of_user_data = create_user_df(user_id=user_id)
     list_of_arryIndepVarObjects_dict = []
     if 'HKCategoryTypeIdentifierSleepAnalysis' in list_of_user_data:
@@ -14,7 +14,7 @@ def user_correlations(user_id):
         # corr_sleep_steps(df)
         arryIndepVarObjects_dict["name"]= "Step Count"
         arryIndepVarObjects_dict["depVarName"]= "Sleep Time"
-        arryIndepVarObjects_dict["correlationValue"]= str(corr_sleep_steps(df))
+        arryIndepVarObjects_dict["correlationValue"]= corr_sleep_steps(df)
         list_of_arryIndepVarObjects_dict.append(arryIndepVarObjects_dict)
 
     if 'HKQuantityTypeIdentifierHeartRate' in list_of_user_data:
@@ -22,13 +22,13 @@ def user_correlations(user_id):
         # corr_sleep_heart_rate(df)
         arryIndepVarObjects_dict["name"]= "Heart Rate Avg"
         arryIndepVarObjects_dict["depVarName"]= "Sleep Time"
-        arryIndepVarObjects_dict["correlationValue"]= str(corr_sleep_heart_rate(df))
+        arryIndepVarObjects_dict["correlationValue"]= corr_sleep_heart_rate(df)
         list_of_arryIndepVarObjects_dict.append(arryIndepVarObjects_dict)
     
     return list_of_arryIndepVarObjects_dict
 
 def corr_sleep_steps(df):
-    print("*** in corr_sleep_steps ***")
+    print("- in corr_sleep_steps")
     # df, list_of_user_data = create_user_df(user_id=user_id)
     # if 'HKCategoryTypeIdentifierSleepAnalysis' in list_of_user_data:
     df_daily_sleep = create_df_daily_sleep(df)
@@ -54,7 +54,7 @@ def corr_sleep_steps(df):
         return "insufficient data"
 
 def corr_sleep_heart_rate(df):
-    print("*** in corr_sleep_heart_rate ***")
+    print("- in corr_sleep_heart_rate")
     # df, list_of_user_data = create_user_df(user_id=user_id)
     # if 'HKCategoryTypeIdentifierSleepAnalysis' in list_of_user_data:
     df_daily_sleep = create_df_daily_sleep(df)
