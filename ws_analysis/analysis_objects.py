@@ -14,7 +14,9 @@ def user_correlations(user_id):
         # corr_sleep_steps(df)
         arryIndepVarObjects_dict["name"]= "Step Count"
         arryIndepVarObjects_dict["depVarName"]= "Sleep Time"
-        arryIndepVarObjects_dict["correlationValue"]= corr_sleep_steps(df)
+        correlation_value, obs_count = corr_sleep_steps(df)
+        arryIndepVarObjects_dict["correlationValue"]= correlation_value
+        arryIndepVarObjects_dict["observationCount"]= obs_count
         list_of_arryIndepVarObjects_dict.append(arryIndepVarObjects_dict)
 
     if 'HKQuantityTypeIdentifierHeartRate' in list_of_user_data:
@@ -22,7 +24,9 @@ def user_correlations(user_id):
         # corr_sleep_heart_rate(df)
         arryIndepVarObjects_dict["name"]= "Heart Rate Avg"
         arryIndepVarObjects_dict["depVarName"]= "Sleep Time"
-        arryIndepVarObjects_dict["correlationValue"]= corr_sleep_heart_rate(df)
+        correlation_value, obs_count = corr_sleep_heart_rate(df)
+        arryIndepVarObjects_dict["correlationValue"]= correlation_value
+        arryIndepVarObjects_dict["observationCount"]= obs_count
         list_of_arryIndepVarObjects_dict.append(arryIndepVarObjects_dict)
     
     return list_of_arryIndepVarObjects_dict
@@ -44,14 +48,15 @@ def corr_sleep_steps(df):
 
             # Calculate the correlation between step_count and sleepTimeFr
             correlation = df_daily_sleep_steps['step_count'].corr(df_daily_sleep_steps['sleepTimeFr'])
+            obs_count = len(df_daily_sleep_steps)
             # print(f"correlation: {correlation}, corr type: {correlation}")
             print(f"df_daily_sleep_steps correlation: {correlation}, corr type: {type(correlation)}")
-            return correlation
+            return correlation, obs_count
         else:
-            return "insufficient data"
+            return "insufficient data", "insufficient data"
     except Exception as e:
         print(f"error in corr_sleep_steps: {e}")
-        return "insufficient data"
+        return "insufficient data", "insufficient data"
 
 def corr_sleep_heart_rate(df):
     print("- in corr_sleep_heart_rate")
@@ -75,10 +80,11 @@ def corr_sleep_heart_rate(df):
 
             # Calculate the correlation between step_count and sleepTimeFr
             correlation = df_daily_sleep_heart_rate['heart_rate_avg'].corr(df_daily_sleep_heart_rate['sleepTimeFr'])
+            obs_count = len(df_daily_sleep_heart_rate)
             print(f"df_daily_sleep_heart_rate correlation: {correlation}, corr type: {type(correlation)}")
             return correlation
         else:
-            return "insufficient data"
+            return "insufficient data", "insufficient data"
     except Exception as e:
         print(f"error in corr_sleep_heart_rate: {e}")
-        return "insufficient data"
+        return "insufficient data", "insufficient data"
