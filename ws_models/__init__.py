@@ -4,7 +4,8 @@ from .models_users import Users
 from .models_blog_posts import CommunityPosts, CommunityComments,NewsPosts, NewsComments
 from .models_locations import UserLocationDay, Locations, WeatherHistory
 from .models_oura import OuraToken, OuraSleepDescriptions
-from .models_apple_health import AppleHealthExport, AppleHealthSteps, AppleHealthKit
+from .models_apple_health import AppleHealthQuantityCategory, AppleHealthWorkout, \
+    AppleHealthExport
 import os
 from flask_login import LoginManager
 

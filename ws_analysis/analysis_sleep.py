@@ -5,7 +5,7 @@ import json
 from .utilities import create_user_df, convert_to_paris_time, get_dateFr_3pm, \
     calculate_duration_in_hours
 import pandas as pd
-from ws_models import sess, inspect, engine, OuraSleepDescriptions, AppleHealthKit
+from ws_models import sess, inspect, engine, OuraSleepDescriptions, AppleHealthQuantityCategory
 from datetime import datetime
 import pytz
 
