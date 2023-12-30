@@ -39,16 +39,13 @@ class AppleHealthWorkout(Base):
     sampleType = Column(Text)
     startDate = Column(Text)
     endDate = Column(Text)
-    duration = Column(Text)#seconds
+    duration = Column(Text)# seconds (Polar is minutes)
     totalEnergyBurned = Column(Text)
     totalDistance = Column(Text)
     sourceName = Column(Text)
     sourceVersion = Column(Text)
-    # sourceProductType = Column(Text)
     device = Column(Text)
     UUID = Column(Text)
-    # quantity = Column(Text)
-    # value = Column(Text)
     time_stamp_utc = Column(DateTime, nullable = False, default = datetime.utcnow)
 
     def __repr__(self):
