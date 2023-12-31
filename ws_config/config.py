@@ -45,6 +45,10 @@ class ConfigBasic():
         self.DIR_DB_AUX_IMAGES_PEOPLE = f"{self.DIR_DB_AUXIILARY}/images_people"# <-- store website images of people
         self.DIR_DB_AUX_FILES_UTILITY = f"{self.DIR_DB_AUXIILARY}/files_utility"
         self.DIR_DB_AUX_OURA_SLEEP_RESPONSES = f"{self.DIR_DB_AUXIILARY}/oura_sleep_responses"
+        
+        # paramters for database/dataframe files
+        self.APPLE_HEALTH_QUANTITY_CATEGORY_FILENAME_PREFIX = "AppleHealthQuantityCategory"
+        self.APPLE_HEALTH_WORKOUTS_FILENAME_PREFIX = "AppleHealthWorkouts"
 
         #Email stuff
         self.MAIL_SERVER = env_dict.get('MAIL_SERVER_GMAIL')
