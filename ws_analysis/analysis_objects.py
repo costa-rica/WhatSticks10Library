@@ -46,9 +46,17 @@ def corr_sleep_heart_rate(df):
 
     # if 'HKCategoryTypeIdentifierSleepAnalysis' in list_of_user_data:
     df_daily_heart_rate = create_df_daily_heart_rate(df)
-    print(f"- df_daily_heart_rate -")
-    print(f"counte of df_daily_heart_rate: {len(df_daily_heart_rate)}")
-    print(df_daily_heart_rate.head(2))
+    # print(f"- df_daily_heart_rate -")
+    # print(f"counte of df_daily_heart_rate: {len(df_daily_heart_rate)}")
+    # print(df_daily_heart_rate.head(2))
+
+    # #save df_daily_heart_rate to csv
+    # csv_path_and_filename_df_daily_heart_rate = os.path.join(config.DAILY_CSV, f"user_{user_id:04}_df_daily_heart_rate.csv")
+    # df_daily_heart_rate.to_csv(csv_path_and_filename_df_daily_heart_rate)
+    # # save df_daily_sleep to csv
+    # csv_path_and_filename_df_daily_sleep = os.path.join(config.DAILY_CSV, f"user_{user_id:04}_df_daily_sleep.csv")
+    # df_daily_sleep.to_csv(csv_path_and_filename_df_daily_sleep)
+
     try:
         print("- try corr_sleep_heart_rate")
         if len(df_daily_heart_rate) > 5:# arbitrary minimum
