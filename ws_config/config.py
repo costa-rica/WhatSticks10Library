@@ -44,20 +44,25 @@ class ConfigBasic():
         self.DASHBOARD_FILES_DIR = os.path.join(self.WS_IOS_HELPER_FILES,"dashboard_table_obj_files")# <-- store pkl files for dashbaord data item
         self.DATA_SOURCE_FILES_DIR = os.path.join(self.WS_IOS_HELPER_FILES,"data_source_obj_files")# <-- store pkl files for dashbaord data item
 
+        # user files
+        self.USER_FILES = os.path.join(self.DB_ROOT,"user_files")
+        self.DAILY_CSV = os.path.join(self.USER_FILES,"daily_csv")
+        self.RAW_FILES_FOR_DAILY_CSV = os.path.join(self.USER_FILES,"raw_files_for_daily_csv")
+
         #Other Directories in /databases/WhatSticks10
         #self.APPLE_HEALTH_DIR = f"{self.DB_ROOT}apple_health"# <-- store Apple Health compressed
         # self.DASHBOARD_FILES_DIR = f"{self.DB_ROOT}dashboard_files"# <-- store pkl files for dashbaord data item
         # self.DATA_SOURCE_FILES_DIR = f"{self.DB_ROOT}data_source_files"# <-- store pkl files for dashbaord data item
         # self.DATAFRAME_FILES_DIR = f"{self.DB_ROOT}dataframe_files"# <-- store pkl files for dashbaord data item
-        self.DIR_DB_AUXIILARY = f"{self.DB_ROOT}auxiliary"# <-- store website files
-        self.DIR_DB_BLOG = os.path.join(self.DIR_DB_AUXIILARY,"blog")# <-- store blog word documents
+        self.DIR_DB_AUXILIARY = f"{self.DB_ROOT}auxiliary"# <-- store website files
+        self.DIR_DB_BLOG = os.path.join(self.DIR_DB_AUXILIARY,"blog")# <-- store blog word documents
         # self.DIR_DB_BLOG = f"{self.DB_ROOT}blog"# <-- store blog word documents
-        self.DIR_DB_NEWS = os.path.join(self.DIR_DB_AUXIILARY,"news")# <-- store blog word documents
+        self.DIR_DB_NEWS = os.path.join(self.DIR_DB_AUXILIARY,"news")# <-- store blog word documents
         # self.DIR_DB_NEWS = f"{self.DB_ROOT}news"# <-- store blog word documents
         
-        self.DIR_DB_AUX_IMAGES_PEOPLE = f"{self.DIR_DB_AUXIILARY}/images_people"# <-- store website images of people
-        self.DIR_DB_AUX_FILES_UTILITY = f"{self.DIR_DB_AUXIILARY}/files_utility"
-        # self.DIR_DB_AUX_OURA_SLEEP_RESPONSES = f"{self.DIR_DB_AUXIILARY}/oura_sleep_responses"
+        self.DIR_DB_AUX_IMAGES_PEOPLE = f"{self.DIR_DB_AUXILIARY}/images_people"# <-- store website images of people
+        self.DIR_DB_AUX_FILES_UTILITY = f"{self.DIR_DB_AUXILIARY}/files_utility"
+        # self.DIR_DB_AUX_OURA_SLEEP_RESPONSES = f"{self.DIR_DB_AUXILIARY}/oura_sleep_responses"
         
         # paramters for database/dataframe files
         self.APPLE_HEALTH_QUANTITY_CATEGORY_FILENAME_PREFIX = "AppleHealthQuantityCategory"
