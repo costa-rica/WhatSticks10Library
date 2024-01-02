@@ -16,15 +16,15 @@ def corr_sleep_steps(df):
     print(df.head(2))
 
     df_daily_sleep = create_df_daily_sleep(df)
-    df_daily_sleep.rename(columns=({'DateUserTz_3pm':'DateUserTz'}),inplace=True)
+    df_daily_sleep.rename(columns=({'dateUserTz_3pm':'dateUserTz'}),inplace=True)
 
     # if 'HKCategoryTypeIdentifierSleepAnalysis' in list_of_user_data:
     df_daily_steps = create_df_daily_steps(df)
     try:
         if len(df_daily_steps) > 5:# arbitrary minimum
 
-            # This will keep only the rows that have matching 'DateUserTz' values in both dataframes
-            df_daily_sleep_steps = pd.merge(df_daily_sleep,df_daily_steps, on='DateUserTz')
+            # This will keep only the rows that have matching 'dateUserTz' values in both dataframes
+            df_daily_sleep_steps = pd.merge(df_daily_sleep,df_daily_steps, on='dateUserTz')
             # save csv file for user
             csv_path_and_filename = os.path.join(config.DAILY_CSV, f"user_{user_id:04}_df_daily_sleep_steps.csv")
             df_daily_sleep_steps.to_csv(csv_path_and_filename)
@@ -46,7 +46,7 @@ def corr_sleep_heart_rate(df):
     # df, list_of_user_data = create_user_df(user_id=user_id)
     # if 'HKCategoryTypeIdentifierSleepAnalysis' in list_of_user_data:
     df_daily_sleep = create_df_daily_sleep(df)
-    df_daily_sleep.rename(columns=({'DateUserTz_3pm':'DateUserTz'}),inplace=True)
+    df_daily_sleep.rename(columns=({'dateUserTz_3pm':'dateUserTz'}),inplace=True)
 
     # if 'HKCategoryTypeIdentifierSleepAnalysis' in list_of_user_data:
     df_daily_heart_rate = create_df_daily_heart_rate(df)
@@ -66,8 +66,8 @@ def corr_sleep_heart_rate(df):
         if len(df_daily_heart_rate) > 5:# arbitrary minimum
             print("- if len(df_daily_heart_rate) > 5")
 
-            # This will keep only the rows that have matching 'DateUserTz' values in both dataframes
-            df_daily_sleep_heart_rate = pd.merge(df_daily_sleep,df_daily_heart_rate, on='DateUserTz')
+            # This will keep only the rows that have matching 'dateUserTz' values in both dataframes
+            df_daily_sleep_heart_rate = pd.merge(df_daily_sleep,df_daily_heart_rate, on='dateUserTz')
 
             # save csv file for user
             csv_path_and_filename = os.path.join(config.DAILY_CSV, f"user_{user_id:04}_df_daily_sleep_heart_rate.csv")

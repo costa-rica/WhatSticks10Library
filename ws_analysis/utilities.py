@@ -32,12 +32,12 @@ def convert_to_user_tz(utc_str, user_tz_str):
     user_time = utc_time.astimezone(user_tz)
     return user_time
 
-# Function to determine the DateUserTz_3pm
-def get_DateUserTz_3pm(row):
+# Function to determine the dateUserTz_3pm
+def get_dateUserTz_3pm(row):
     if row['startDateUserTz'].time() >= pd.Timestamp('15:00:00').time():
-        return row['DateUserTz']
+        return row['dateUserTz']
     else:
-        return row['DateUserTz'] - pd.Timedelta(days=1)
+        return row['dateUserTz'] - pd.Timedelta(days=1)
 
 # Function to calculate the duration in hours as a float
 def calculate_duration_in_hours(start, end):
