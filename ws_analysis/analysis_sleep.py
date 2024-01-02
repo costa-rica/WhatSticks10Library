@@ -25,7 +25,7 @@ def create_df_sleep(df):
 def create_aggregated_sleep_table(df_sleep):
     df_sleep_states_3_4_5 = df_sleep[df_sleep['value'].isin(["3.0", "4.0", "5.0"])]
     # Apply the function to each row in the dataframe
-    df_sleep_states_3_4_5['sleepTimeUserTz'] = df_sleep_states_3_4_5.apply(lambda row: calculate_duration_in_hours(row['startdateUserTz'], row['enddateUserTz']), axis=1)
+    df_sleep_states_3_4_5['sleepTimeUserTz'] = df_sleep_states_3_4_5.apply(lambda row: calculate_duration_in_hours(row['startDateUserTz'], row['endDateUserTz']), axis=1)
     # Now, let's aggregate by dateUserTz_3pm and sum the sleepTimeUserTz values
     aggregated_sleep_data = df_sleep_states_3_4_5.groupby('dateUserTz_3pm')['sleepTimeUserTz'].sum().reset_index()
     return aggregated_sleep_data
