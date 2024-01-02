@@ -18,6 +18,10 @@ def create_df_daily_sleep(df):
 
 def create_df_sleep(df):
     df_sleep = df[df['sampleType']=='HKCategoryTypeIdentifierSleepAnalysis']
+    print("- df_sleep -")
+    print(df_sleep.columns)
+    print(df_sleep.head(1))
+    print(" ------- ")
     # Apply the function to each row to create the new dateUserTz_3pm column
     df_sleep['dateUserTz_3pm'] = df_sleep.apply(get_dateUserTz_3pm, axis=1)
     return df_sleep
