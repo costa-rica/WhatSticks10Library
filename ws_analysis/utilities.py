@@ -18,6 +18,7 @@ def create_user_qty_cat_df(user_id, user_tz_str='Europe/Paris'):
     return df, list_of_user_data
 
 def create_user_workouts_df(user_id, user_tz_str='Europe/Paris'):
+    print("- in create_user_workouts_df -")
     # Query data from database into pandas dataframe
     user_id=user_id
     query = f"SELECT * FROM apple_health_workout WHERE user_id = {user_id}"
@@ -27,7 +28,9 @@ def create_user_workouts_df(user_id, user_tz_str='Europe/Paris'):
     df['endDateUserTz'] = df['endDate'].apply(lambda utc_str: convert_to_user_tz(utc_str, user_tz_str))
     # Extract just the date part from startDateUserTz
     df['dateUserTz'] = df['startDateUserTz'].dt.date
+    print(f"df has: {len(df)} records")
     list_of_user_data = list(df.sampleType.unique())
+    print(f"list_of_user_data: {list_of_user_data}")
     return df, list_of_user_data
 
 # paris = 'Europe/Paris'
