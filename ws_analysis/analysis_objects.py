@@ -11,6 +11,10 @@ def corr_sleep_steps(df):
     user_id = df['user_id'].iloc[0]
     # df, list_of_user_data = create_user_df(user_id=user_id)
     # if 'HKCategoryTypeIdentifierSleepAnalysis' in list_of_user_data:
+    print("-- df ---")
+    print(df.columns)
+    print(df.head(2))
+
     df_daily_sleep = create_df_daily_sleep(df)
     df_daily_sleep.rename(columns=({'DateUserTz_3pm':'DateUserTz'}),inplace=True)
 
@@ -24,8 +28,8 @@ def corr_sleep_steps(df):
             # save csv file for user
             csv_path_and_filename = os.path.join(config.DAILY_CSV, f"user_{user_id:04}_df_daily_sleep_steps.csv")
             df_daily_sleep_steps.to_csv(csv_path_and_filename)
-            # Calculate the correlation between step_count and sleepTimeFr
-            correlation = df_daily_sleep_steps['step_count'].corr(df_daily_sleep_steps['sleepTimeFr'])
+            # Calculate the correlation between step_count and sleepTimeUserTz
+            correlation = df_daily_sleep_steps['step_count'].corr(df_daily_sleep_steps['sleepTimeUserTz'])
             obs_count = len(df_daily_sleep_steps)
             # print(f"correlation: {correlation}, corr type: {correlation}")
             print(f"df_daily_sleep_steps correlation: {correlation}, corr type: {type(correlation)}")
@@ -69,8 +73,8 @@ def corr_sleep_heart_rate(df):
             csv_path_and_filename = os.path.join(config.DAILY_CSV, f"user_{user_id:04}_df_daily_sleep_heart_rate.csv")
             df_daily_sleep_heart_rate.to_csv(csv_path_and_filename)
 
-            # Calculate the correlation between step_count and sleepTimeFr
-            correlation = df_daily_sleep_heart_rate['heart_rate_avg'].corr(df_daily_sleep_heart_rate['sleepTimeFr'])
+            # Calculate the correlation between step_count and sleepTimeUserTz
+            correlation = df_daily_sleep_heart_rate['heart_rate_avg'].corr(df_daily_sleep_heart_rate['sleepTimeUserTz'])
             obs_count = len(df_daily_sleep_heart_rate)
             print(f"df_daily_sleep_heart_rate correlation: {correlation}, corr type: {type(correlation)}")
             return correlation, obs_count
