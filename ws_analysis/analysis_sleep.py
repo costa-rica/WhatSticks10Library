@@ -2,7 +2,7 @@ import os
 import json
 # from ws_config import ConfigLocal
 # from .config import config
-from .utilities import create_user_df, convert_to_user_tz, get_dateUserTz_3pm, \
+from .utilities import create_user_qty_cat_df, convert_to_user_tz, get_dateUserTz_3pm, \
     calculate_duration_in_hours
 import pandas as pd
 from ws_models import sess, inspect, engine, OuraSleepDescriptions, AppleHealthQuantityCategory

@@ -4,18 +4,28 @@ from datetime import datetime
 import pytz
 
 
-def create_user_df(user_id, user_tz_str='Europe/Paris'):
+def create_user_qty_cat_df(user_id, user_tz_str='Europe/Paris'):
     # Query data from database into pandas dataframe
     user_id=user_id
     query = f"SELECT * FROM apple_health_quantity_category WHERE user_id = {user_id}"
     df = pd.read_sql_query(query, engine)
     # Applying the conversion to new columns
-    # df['startDateUserTz'] = df['startDate'].apply(convert_to_paris_time)
     df['startDateUserTz'] = df['startDate'].apply(lambda utc_str: convert_to_user_tz(utc_str, user_tz_str))
-    # df['endDateUserTz'] = df['endDate'].apply(convert_to_paris_time)
     df['endDateUserTz'] = df['endDate'].apply(lambda utc_str: convert_to_user_tz(utc_str, user_tz_str))
     # Extract just the date part from startDateUserTz
-    # df['date'] = df['startDateUserTz'].dt.date
+    df['dateUserTz'] = df['startDateUserTz'].dt.date
+    list_of_user_data = list(df.sampleType.unique())
+    return df, list_of_user_data
+
+def create_user_workouts_df(user_id, user_tz_str='Europe/Paris'):
+    # Query data from database into pandas dataframe
+    user_id=user_id
+    query = f"SELECT * FROM apple_health_workout WHERE user_id = {user_id}"
+    df = pd.read_sql_query(query, engine)
+    # Applying the conversion to new columns
+    df['startDateUserTz'] = df['startDate'].apply(lambda utc_str: convert_to_user_tz(utc_str, user_tz_str))
+    df['endDateUserTz'] = df['endDate'].apply(lambda utc_str: convert_to_user_tz(utc_str, user_tz_str))
+    # Extract just the date part from startDateUserTz
     df['dateUserTz'] = df['startDateUserTz'].dt.date
     list_of_user_data = list(df.sampleType.unique())
     return df, list_of_user_data
