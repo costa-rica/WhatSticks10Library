@@ -6,6 +6,8 @@ import pytz
 
 def create_user_qty_cat_df(user_id, user_tz_str='Europe/Paris'):
     # Query data from database into pandas dataframe
+    print("- in create_user_qty_cat_df -")
+    print("*** check print is working *** ")
     user_id=user_id
     query = f"SELECT * FROM apple_health_quantity_category WHERE user_id = {user_id}"
     df = pd.read_sql_query(query, engine)

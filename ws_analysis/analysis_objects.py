@@ -93,6 +93,7 @@ def corr_sleep_workouts(df):
     print("-- df ---")
     print(df.columns)
     print(df.head(2))
+    print("** check print is working ** ")
 
     df_daily_sleep = create_df_daily_sleep(df)
     df_daily_sleep.rename(columns=({'dateUserTz_3pm':'dateUserTz'}),inplace=True)
