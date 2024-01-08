@@ -21,6 +21,7 @@ class Users(Base, UserMixin):
     username = Column(Text, default=default_username)
     lat = Column(Float(precision=4, decimal_return_scale=None))
     lon = Column(Float(precision=4, decimal_return_scale=None))
+    timezone = Column(Text)
     share = Column(Text)
     notes = Column(Text)
     post_blog_permission = Column(Boolean, default=True)
