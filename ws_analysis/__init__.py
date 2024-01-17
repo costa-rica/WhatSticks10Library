@@ -5,4 +5,4 @@ from .analysis_steps import create_df_daily_steps
 from .analysis_workouts import create_df_daily_workout_duration
 from .analysis_heart_rate import create_df_daily_heart_rate
 from .analysis_objects import corr_sleep_steps, corr_sleep_heart_rate, corr_sleep_workouts, \
-    corr_workouts_sleep
+    corr_workouts_sleep, corr_workouts_steps
