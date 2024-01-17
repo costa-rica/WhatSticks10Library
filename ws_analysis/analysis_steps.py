@@ -1,7 +1,6 @@
 from .utilities import create_user_qty_cat_df
 import pandas as pd
 from datetime import datetime, timedelta
-# import pytz
 
 def create_df_daily_steps(df):
     df_steps = df[df['sampleType']=='HKQuantityTypeIdentifierStepCount']
