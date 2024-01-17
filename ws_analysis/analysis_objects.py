@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas as pd;import numpy as np
 from .config import config
 import os
 from .utilities import create_user_qty_cat_df
@@ -8,7 +8,8 @@ from .analysis_steps import create_df_daily_steps, \
     create_df_n_minus1_daily_steps
 from .analysis_heart_rate import create_df_daily_heart_rate, \
     create_df_n_minus1_daily_heart_rate
-from .analysis_workouts import create_df_daily_workout_duration
+from .analysis_workouts import create_df_daily_workout_duration, \
+    create_df_daily_workout_duration_dummies
 
 
 def corr_sleep_steps(df):
@@ -92,9 +93,9 @@ def corr_sleep_workouts(df_qty_cat, df_workouts):
 
             # This will keep only the rows that have matching 'dateUserTz' values in both dataframes
             df_daily_sleep_workout_duration = pd.merge(df_daily_sleep,df_daily_workout_duration, on='dateUserTz')
-            # save csv file for user
-            csv_path_and_filename = os.path.join(config.DAILY_CSV, f"user_{user_id:04}_df_daily_sleep_workout_duration.csv")
-            df_daily_sleep_workout_duration.to_csv(csv_path_and_filename)
+            # # save csv file for user
+            # csv_path_and_filename = os.path.join(config.DAILY_CSV, f"user_{user_id:04}_df_daily_sleep_workout_duration.csv")
+            # df_daily_sleep_workout_duration.to_csv(csv_path_and_filename)
             # Calculate the correlation between step_count and sleepTimeUserTz
             correlation = df_daily_sleep_workout_duration['duration'].corr(df_daily_sleep_workout_duration['sleepTimeUserTz'])
             obs_count = len(df_daily_sleep_workout_duration)
@@ -106,6 +107,45 @@ def corr_sleep_workouts(df_qty_cat, df_workouts):
     except Exception as e:
         print(f"error in corr_sleep_workouts: {e}")
         return "insufficient data", "insufficient data"
+
+def corr_sleep_workout_dummies(df_qty_cat, df_workouts):
+
+    print("- in corr_sleep_workout_dummies")
+    user_id = df_qty_cat['user_id'].iloc[0]
+    df_daily_sleep = create_df_daily_sleep(df_qty_cat)
+    df_daily_sleep.rename(columns=({'dateUserTz_3pm':'dateUserTz'}),inplace=True)
+
+    df_daily_workout_duration_dummies = create_df_daily_workout_duration_dummies(df_workouts)
+    try:
+        if len(df_daily_workout_duration_dummies) > 5:# arbitrary minimum
+            # This will keep only the rows that have matching 'dateUserTz' values in both dataframes
+            df_daily_sleep_workout_duration = pd.merge(df_daily_sleep,df_daily_workout_duration_dummies, on='dateUserTz')
+            # save csv file for user
+            csv_path_and_filename = os.path.join(config.DAILY_CSV, f"user_{user_id:04}_df_daily_sleep_workout_duration_dummies.csv")
+            df_daily_sleep_workout_duration.to_csv(csv_path_and_filename)
+
+            # List to store the tuples of column name and correlation
+            col_names_and_correlations_tuple_list = []
+
+            # Iterate over the columns to calculate correlation
+            for col in df_daily_sleep_workout_duration.columns:
+                if col.startswith('dur_') and col.endswith('_dummy'):
+                    # Calculate the correlation
+                    corr_value = df_daily_sleep_workout_duration['sleepTimeUserTz'].corr(df_daily_sleep_workout_duration[col])
+                    
+                    # Append the tuple (column name, correlation value) to the list
+                    col_names_and_correlations_tuple_list.append((col, corr_value))
+
+            obs_count = len(df_daily_sleep_workout_duration)
+
+            return col_names_and_correlations_tuple_list, obs_count
+        else:
+            return "insufficient data", "insufficient data"
+    except Exception as e:
+        print(f"error in corr_sleep_workouts: {e}")
+        return "insufficient data", "insufficient data"
+
+
 
 #######################################
 ## Daily Workouts Dependent Variable ##
