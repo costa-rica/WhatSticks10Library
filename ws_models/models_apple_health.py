@@ -29,7 +29,8 @@ class AppleHealthQuantityCategory(Base):
     
     # Add a UniqueConstraint to the table definition
     __table_args__ = (
-        UniqueConstraint('user_id', 'sampleType', 'UUID', name='_user_sample_uuid_uc'),
+        UniqueConstraint('user_id', 'sampleType', 'UUID','startDate', 'quantity','value', \
+            name='_user_sample_uuid_uc'),
     )
 
 class AppleHealthWorkout(Base):
@@ -55,7 +56,8 @@ class AppleHealthWorkout(Base):
     
     # Add a UniqueConstraint to the table definition
     __table_args__ = (
-        UniqueConstraint('user_id', 'sampleType', 'UUID', name='_user_sample_uuid_uc'),
+        UniqueConstraint('user_id', 'sampleType', 'UUID','duration', 'startDate',\
+            'totalEnergyBurned','totalDistance', name='_user_sample_uuid_uc'),
     )
 
 # This is the old table from What-Sticks web, used for XML file exported from iPhone

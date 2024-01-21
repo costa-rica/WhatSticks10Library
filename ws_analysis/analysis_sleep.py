@@ -13,7 +13,11 @@ import pytz
 # Function to run to get table of sleep time
 def create_df_daily_sleep(df):
     print("- in create_df_daily_sleep")
-    df_sleep = df[df['sampleType']=='HKCategoryTypeIdentifierSleepAnalysis']
+    # df_sleep = df[df['sampleType']=='HKCategoryTypeIdentifierSleepAnalysis']
+    df_sleep = df[df['sampleType']=='HKCategoryTypeIdentifierSleepAnalysis'].copy()
+    if len(df_sleep) == 0:
+        return pd.DataFrame()#<-- return empty dataframe
+
     # Apply the function to each row to create the new dateUserTz_3pm column
     df_sleep['dateUserTz_3pm'] = df_sleep.apply(get_dateUserTz_3pm, axis=1)
     df_sleep_states_3_4_5 = df_sleep[df_sleep['value'].isin(["3.0", "4.0", "5.0"])]

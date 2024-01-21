@@ -15,13 +15,15 @@ from .analysis_workouts import create_df_daily_workout_duration, \
 def corr_sleep_steps(df):
     print("- in corr_sleep_steps")
     user_id = df['user_id'].iloc[0]
-    # df, list_of_user_data = create_user_qty_cat_df(user_id=user_id)
-    # if 'HKCategoryTypeIdentifierSleepAnalysis' in list_of_user_data:
-    print("-- df ---")
-    print(df.columns)
-    print(df.head(2))
+    # # df, list_of_user_data = create_user_qty_cat_df(user_id=user_id)
+    # # if 'HKCategoryTypeIdentifierSleepAnalysis' in list_of_user_data:
+    # print("-- df ---")
+    # print(df.columns)
+    # print(df.head(2))
 
     df_daily_sleep = create_df_daily_sleep(df)
+    if len(df_daily_sleep) == 0:
+        return "insufficient data", "insufficient data"
     df_daily_sleep.rename(columns=({'dateUserTz_3pm':'dateUserTz'}),inplace=True)
 
     # if 'HKCategoryTypeIdentifierSleepAnalysis' in list_of_user_data:
@@ -51,6 +53,8 @@ def corr_sleep_heart_rate(df):
     user_id = df['user_id'].iloc[0]
 
     df_daily_sleep = create_df_daily_sleep(df)
+    if len(df_daily_sleep) == 0:
+        return "insufficient data", "insufficient data"
     df_daily_sleep.rename(columns=({'dateUserTz_3pm':'dateUserTz'}),inplace=True)
 
     df_daily_heart_rate = create_df_daily_heart_rate(df)
@@ -83,6 +87,8 @@ def corr_sleep_workouts(df_qty_cat, df_workouts):
     print("- in corr_sleep_workouts")
     user_id = df_qty_cat['user_id'].iloc[0]
     df_daily_sleep = create_df_daily_sleep(df_qty_cat)
+    if len(df_daily_sleep) == 0:
+        return "insufficient data", "insufficient data"
     df_daily_sleep.rename(columns=({'dateUserTz_3pm':'dateUserTz'}),inplace=True)
 
     df_daily_workout_duration = create_df_daily_workout_duration(df_workouts)
@@ -113,6 +119,8 @@ def corr_sleep_workout_dummies(df_qty_cat, df_workouts):
     print("- in corr_sleep_workout_dummies")
     user_id = df_qty_cat['user_id'].iloc[0]
     df_daily_sleep = create_df_daily_sleep(df_qty_cat)
+    if len(df_daily_sleep) == 0:
+        return "insufficient data", "insufficient data"
     df_daily_sleep.rename(columns=({'dateUserTz_3pm':'dateUserTz'}),inplace=True)
 
     df_daily_workout_duration_dummies = create_df_daily_workout_duration_dummies(df_workouts)
@@ -157,6 +165,8 @@ def corr_workouts_sleep(df_workouts, df_qty_cat):
     print("- in corr_workouts_sleep")
     user_id = df_qty_cat['user_id'].iloc[0]
     df_daily_sleep = create_df_daily_sleep(df_qty_cat)# create daily sleep
+    if len(df_daily_sleep) == 0:
+        return "insufficient data", "insufficient data"
     df_daily_sleep.rename(columns=({'dateUserTz_3pm':'dateUserTz'}),inplace=True)
 
     print("-------- df_daily_sleep ------")
@@ -210,7 +220,8 @@ def corr_workouts_steps(df_workouts, df_qty_cat):
     user_id = df_qty_cat['user_id'].iloc[0]
     # df_daily_sleep = create_df_daily_sleep(df_qty_cat)# create daily sleep
     df_daily_steps = create_df_daily_steps(df_qty_cat)# create daily steps
-
+    if len(df_daily_steps) == 0:
+        return "insufficient data", "insufficient data"
     # df_n_minus1_daily_sleep = create_df_n_minus1_daily_sleep(df_daily_sleep)
     df_n_minus1_daily_steps = create_df_n_minus1_daily_steps(df_daily_steps)
     df_n_minus1_daily_steps['dateUserTz']=pd.to_datetime(df_n_minus1_daily_steps['dateUserTz'])
@@ -257,7 +268,8 @@ def corr_workouts_heart_rate(df_workouts, df_qty_cat):
     user_id = df_qty_cat['user_id'].iloc[0]
     # df_daily_steps = create_df_daily_steps(df_qty_cat)# create daily steps
     df_daily_heart_rate = create_df_daily_heart_rate(df_qty_cat)# create daily steps
-
+    if len(df_daily_heart_rate) == 0:
+        return "insufficient data", "insufficient data"
     # df_n_minus1_daily_steps = create_df_n_minus1_daily_steps(df_daily_steps)
     df_n_minus1_daily_heart_rate = create_df_n_minus1_daily_heart_rate(df_daily_heart_rate)
     df_n_minus1_daily_heart_rate['dateUserTz']=pd.to_datetime(df_n_minus1_daily_heart_rate['dateUserTz'])

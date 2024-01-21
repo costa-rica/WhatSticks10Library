@@ -4,7 +4,8 @@ from datetime import datetime, timedelta
 
 def create_df_daily_heart_rate(df):
     df_heart_rate = df[df.sampleType == 'HKQuantityTypeIdentifierHeartRate']
-    # df_steps['quantity'] = pd.to_numeric(df_steps['quantity'])
+    if len(df_heart_rate) == 0:
+        return pd.DataFrame()#<-- return must return dataframe, expecting df on other end
     df_heart_rate['quantity'] = df_heart_rate['quantity'].astype('float')
     aggregated_heart_rate_data = df_heart_rate.groupby('dateUserTz')['quantity'].mean().reset_index()
     aggregated_heart_rate_data.rename(columns=({'quantity':'heart_rate_avg'}),inplace=True)

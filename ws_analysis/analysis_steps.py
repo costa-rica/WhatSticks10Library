@@ -4,6 +4,8 @@ from datetime import datetime, timedelta
 
 def create_df_daily_steps(df):
     df_steps = df[df['sampleType']=='HKQuantityTypeIdentifierStepCount']
+    if len(df_steps) == 0:
+        return pd.DataFrame()#<-- return must return dataframe, expecting df on other end
     df_steps['quantity'] = pd.to_numeric(df_steps['quantity'])
     aggregated_steps_data = df_steps.groupby('dateUserTz')['quantity'].sum().reset_index()
     aggregated_steps_data.rename(columns=({'quantity':'step_count'}),inplace=True)
