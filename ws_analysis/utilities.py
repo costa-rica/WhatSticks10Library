@@ -71,15 +71,15 @@ def convert_to_user_tz(utc_str, user_tz_str):
 
 # Function to determine the dateUserTz_3pm
 def get_dateUserTz_3pm(row):
-    print("- in get_dateUserTz_3pm(row) -")
-    print(row)
+    # print("- in get_dateUserTz_3pm(row) -")
+    # print(row)
     if row['startDateUserTz'].time() >= pd.Timestamp('15:00:00').time():
-        print("- after 15:00:00")
-        print(row['dateUserTz'])
+        # print("- after 15:00:00")
+        # print(row['dateUserTz'])
         return row['dateUserTz']
     else:
-        print("- before 15:00:00")
-        print(row['dateUserTz'] - pd.Timedelta(days=1))
+        # print("- before 15:00:00")
+        # print(row['dateUserTz'] - pd.Timedelta(days=1))
         return row['dateUserTz'] - pd.Timedelta(days=1)
 
 # Function to calculate the duration in hours as a float
