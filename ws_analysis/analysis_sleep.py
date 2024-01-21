@@ -16,7 +16,7 @@ def create_df_daily_sleep(df):
     # df_sleep = df[df['sampleType']=='HKCategoryTypeIdentifierSleepAnalysis']
     df_sleep = df[df['sampleType']=='HKCategoryTypeIdentifierSleepAnalysis'].copy()
     if len(df_sleep) == 0:
-        return pd.DataFrame()#<-- return empty dataframe
+        return pd.DataFrame()#<-- return must return dataframe, expecting df on other end
 
     # Apply the function to each row to create the new dateUserTz_3pm column
     df_sleep['dateUserTz_3pm'] = df_sleep.apply(get_dateUserTz_3pm, axis=1)
