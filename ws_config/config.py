@@ -50,19 +50,22 @@ class ConfigBasic():
         self.DAILY_CSV = os.path.join(self.USER_FILES,"daily_csv")
         self.RAW_FILES_FOR_DAILY_CSV = os.path.join(self.USER_FILES,"raw_files_for_daily_csv")
 
+        # website files
+        self.WEBSITE_FILES = f"{self.DB_ROOT}website_files"# <-- store website files
+        self.DIR_WEBSITE_UTILITY_IMAGES = os.path.join(self.WEBSITE_FILES,"website_utility_images")# <-- store blog word documents
         #Other Directories in /databases/WhatSticks10
         #self.APPLE_HEALTH_DIR = f"{self.DB_ROOT}apple_health"# <-- store Apple Health compressed
         # self.DASHBOARD_FILES_DIR = f"{self.DB_ROOT}dashboard_files"# <-- store pkl files for dashbaord data item
         # self.DATA_SOURCE_FILES_DIR = f"{self.DB_ROOT}data_source_files"# <-- store pkl files for dashbaord data item
         # self.DATAFRAME_FILES_DIR = f"{self.DB_ROOT}dataframe_files"# <-- store pkl files for dashbaord data item
-        self.DIR_DB_AUXILIARY = f"{self.DB_ROOT}auxiliary"# <-- store website files
-        self.DIR_DB_BLOG = os.path.join(self.DIR_DB_AUXILIARY,"blog")# <-- store blog word documents
+        # self.DIR_DB_AUXILIARY = f"{self.DB_ROOT}auxiliary"# <-- store website files
+        # self.DIR_DB_BLOG = os.path.join(self.DIR_DB_AUXILIARY,"blog")# <-- store blog word documents
         # self.DIR_DB_BLOG = f"{self.DB_ROOT}blog"# <-- store blog word documents
-        self.DIR_DB_NEWS = os.path.join(self.DIR_DB_AUXILIARY,"news")# <-- store blog word documents
+        # self.DIR_DB_NEWS = os.path.join(self.DIR_DB_AUXILIARY,"news")# <-- store blog word documents
         # self.DIR_DB_NEWS = f"{self.DB_ROOT}news"# <-- store blog word documents
         
-        self.DIR_DB_AUX_IMAGES_PEOPLE = f"{self.DIR_DB_AUXILIARY}/images_people"# <-- store website images of people
-        self.DIR_DB_AUX_FILES_UTILITY = f"{self.DIR_DB_AUXILIARY}/files_utility"
+        # self.DIR_DB_AUX_IMAGES_PEOPLE = f"{self.DIR_DB_AUXILIARY}/images_people"# <-- store website images of people
+        # self.DIR_DB_AUX_FILES_UTILITY = f"{self.DIR_DB_AUXILIARY}/files_utility"
         # self.DIR_DB_AUX_OURA_SLEEP_RESPONSES = f"{self.DIR_DB_AUXILIARY}/oura_sleep_responses"
         
         # paramters for database/dataframe files
