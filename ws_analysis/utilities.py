@@ -8,6 +8,7 @@ import os
 def create_user_qty_cat_df(user_id, user_tz_str='Europe/Paris'):
     # Query data from database into pandas dataframe
     logger_apple.info("- in create_user_qty_cat_df -")
+    logger_apple.info("- **** NEW Logging for WS10Library ***** -")
     pickle_apple_qty_cat_path_and_name = create_pickle_apple_qty_cat_path_and_name(user_id)
     if os.path.exists(pickle_apple_qty_cat_path_and_name):
         logger_apple.info(f"- reading pickle file for workouts: {pickle_apple_qty_cat_path_and_name} -")
