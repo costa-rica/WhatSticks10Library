@@ -2,15 +2,15 @@ import pandas as pd
 from ws_models import engine
 from datetime import datetime
 import pytz
-from .config import config
+from .config import config, logger_apple
 import os
 
 def create_user_qty_cat_df(user_id, user_tz_str='Europe/Paris'):
     # Query data from database into pandas dataframe
-    print("- in create_user_qty_cat_df -")
+    logger_apple.info("- in create_user_qty_cat_df -")
     pickle_apple_qty_cat_path_and_name = create_pickle_apple_qty_cat_path_and_name(user_id)
     if os.path.exists(pickle_apple_qty_cat_path_and_name):
-        print(f"- reading pickle file for workouts: {pickle_apple_qty_cat_path_and_name} -")
+        logger_apple.info(f"- reading pickle file for workouts: {pickle_apple_qty_cat_path_and_name} -")
         # df_existing_user_workouts_data=pd.read_pickle(pickle_apple_qty_cat_path_and_name)
         df=pd.read_pickle(pickle_apple_qty_cat_path_and_name)
 
@@ -26,8 +26,8 @@ def create_user_qty_cat_df(user_id, user_tz_str='Europe/Paris'):
         list_of_user_data = list(df.sampleType.unique())
         return df, list_of_user_data
     except Exception as e:
-        print("* User probably has NO Apple Quantity or Category Data *")
-        print(f"An error occurred (in send_data_source_objects): {e}")
+        logger_apple.info("* User probably has NO Apple Quantity or Category Data *")
+        logger_apple.info(f"An error occurred (in send_data_source_objects): {e}")
         return "insufficient data", "insufficient data"
 
 def create_user_workouts_df(user_id, user_tz_str='Europe/Paris'):
