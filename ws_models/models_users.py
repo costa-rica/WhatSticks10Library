@@ -7,6 +7,7 @@ from datetime import datetime
 from flask_login import UserMixin
 from .config import config
 import os
+from flask import current_app
 
 
 def default_username(context):
