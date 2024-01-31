@@ -53,6 +53,7 @@ class ConfigBasic():
         # website files
         self.WEBSITE_FILES = f"{self.DB_ROOT}website_files"# <-- store website files
         self.DIR_WEBSITE_UTILITY_IMAGES = os.path.join(self.WEBSITE_FILES,"website_utility_images")# <-- store blog word documents
+        self.DIR_WEBSITE_VIDEOS = os.path.join(self.WEBSITE_FILES,"website_videos")# <-- store videos
         #Other Directories in /databases/WhatSticks10
         #self.APPLE_HEALTH_DIR = f"{self.DB_ROOT}apple_health"# <-- store Apple Health compressed
         # self.DASHBOARD_FILES_DIR = f"{self.DB_ROOT}dashboard_files"# <-- store pkl files for dashbaord data item
