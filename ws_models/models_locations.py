@@ -1,6 +1,6 @@
 from .base import Base
 from sqlalchemy import Column, Integer, String, Text, Float, DateTime, ForeignKey, \
-    Date
+    Date, JSON
 from datetime import datetime
 from sqlalchemy.orm import relationship
 
@@ -9,9 +9,11 @@ class UserLocationDay(Base):
     __tablename__ = 'user_location_day'
     id = Column(Integer, primary_key = True)
     user_id = Column(Integer, ForeignKey("users.id"))
-    location_id = Column(Integer, nullable = False)#TODO: should this remain nullable=False?
-    date = Column(Text)
-    local_time = Column(Text)
+    # location_id = Column(Integer, nullable = False)#TODO: should this remain nullable=False?
+    location_id = Column(Integer, ForeignKey("locations.id"))#TODO: should this remain nullable=False?
+    # date = Column(Text)
+    # local_time = Column(Text)
+    date_time_user_checkin_utc = Column(DateTime)
     row_type = Column(Text)#user entered or scheduler entered row?
     time_stamp_utc = Column(DateTime, nullable = False, default = datetime.utcnow)
 
@@ -24,13 +26,15 @@ class Locations(Base):
     __tablename__ = 'locations'
     id = Column(Integer,  primary_key = True)
     city = Column(Text)
-    region = Column(Text)
+    state = Column(Text)
     country = Column(Text)
     lat = Column(Float(precision=4, decimal_return_scale=None))
     lon = Column(Float(precision=4, decimal_return_scale=None))
     tz_id = Column(Text)
+    boundingbox = Column(JSON)
     time_stamp_utc = Column(DateTime, nullable = False, default = datetime.utcnow)
     # oura_sleep = relationship('Oura_sleep_descriptions', backref='oura_sleep', lazy=True)
+    loc_day = relationship('UserLocationDay', backref='user_loc_day_for_this_loc', lazy=True)
     weather_hist = relationship('WeatherHistory', backref = 'weath_hist', lazy = True)
 
     def __repr__(self):

@@ -110,11 +110,11 @@ class ConfigBasic():
         #Visual Crossing - weather
         # self.VISUAL_CROSSING_BASE_URL = env_dict.get('VISUAL_CROSSING_BASE_URL')
         # https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/
-        self.VISUAL_CROSSING_BASE_URL = "https://weather.visualcrossing.com/"
+        self.VISUAL_CROSSING_BASE_URL = "https://weather.visualcrossing.com"
         self.VISUAL_CROSSING_TOKEN = env_dict.get('VISUAL_CROSSING_TOKEN')
 
         #Nominatim API - location
-        self.NOMINATIM_API_URL = "https://nominatim.openstreetmap.org/"
+        self.NOMINATIM_API_URL = "https://nominatim.openstreetmap.org"
         # f"https://nominatim.openstreetmap.org/reverse?lat={latitude}&lon={longitude}&format=json"
 
 
