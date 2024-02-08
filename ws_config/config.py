@@ -10,15 +10,30 @@ print(f"- Config File: {os.path.join(os.environ.get('CONFIG_PATH_LOCAL'), os.env
 print(f"- DB: sqlite:///{os.environ.get('DB_ROOT')}{os.environ.get('DB_NAME_WHAT_STICKS')}")
 
 match os.environ.get('FLASK_CONFIG_TYPE'):
-    case 'dev' :
-        with open(os.path.join(os.environ.get('CONFIG_PATH_SERVER'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
+    # case 'dev' | 'prod':
+    #     with open(os.path.join(os.environ.get('CONFIG_PATH_SERVER'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
+    #         env_dict = json.load(env_file)
+    #         print(f".env path: {os.path.join(os.environ.get('CONFIG_PATH_SERVER'), os.environ.get('CONFIG_FILE_NAME'))}")
+    # case 'prod' :
+    #     with open(os.path.join(os.environ.get('CONFIG_PATH_SERVER'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
+    #         env_dict = json.load(env_file)
+    #         print(f".env path: {os.path.join(os.environ.get('CONFIG_PATH_SERVER'), os.environ.get('CONFIG_FILE_NAME'))}")
+    # case _:
+    #     with open(os.path.join(os.environ.get('CONFIG_PATH_LOCAL'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
+    #         env_dict = json.load(env_file)
+    #         print(f".env path: {os.path.join(os.environ.get('CONFIG_PATH_LOCAL'), os.environ.get('CONFIG_FILE_NAME'))}")
+    case 'dev' | 'prod':
+        config_path = os.environ.get('CONFIG_PATH_SERVER')
+        config_file_name = os.environ.get('CONFIG_FILE_NAME')
+        with open(os.path.join(config_path, config_file_name)) as env_file:
             env_dict = json.load(env_file)
-    case 'prod' :
-        with open(os.path.join(os.environ.get('CONFIG_PATH_SERVER'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
-            env_dict = json.load(env_file)
+            print(f".env path: {os.path.join(config_path, config_file_name)}")
     case _:
-        with open(os.path.join(os.environ.get('CONFIG_PATH_LOCAL'), os.environ.get('CONFIG_FILE_NAME'))) as env_file:
+        config_path = os.environ.get('CONFIG_PATH_LOCAL')
+        config_file_name = os.environ.get('CONFIG_FILE_NAME')
+        with open(os.path.join(config_path, config_file_name)) as env_file:
             env_dict = json.load(env_file)
+            print(f".env path: {os.path.join(config_path, config_file_name)}")
 
 class ConfigBasic():
 
@@ -55,18 +70,11 @@ class ConfigBasic():
         self.DIR_WEBSITE_UTILITY_IMAGES = os.path.join(self.WEBSITE_FILES,"website_utility_images")# <-- store blog word documents
         self.DIR_WEBSITE_VIDEOS = os.path.join(self.WEBSITE_FILES,"website_videos")# <-- store videos
         #Other Directories in /databases/WhatSticks10
-        #self.APPLE_HEALTH_DIR = f"{self.DB_ROOT}apple_health"# <-- store Apple Health compressed
-        # self.DASHBOARD_FILES_DIR = f"{self.DB_ROOT}dashboard_files"# <-- store pkl files for dashbaord data item
-        # self.DATA_SOURCE_FILES_DIR = f"{self.DB_ROOT}data_source_files"# <-- store pkl files for dashbaord data item
-        # self.DATAFRAME_FILES_DIR = f"{self.DB_ROOT}dataframe_files"# <-- store pkl files for dashbaord data item
-        # self.DIR_DB_AUXILIARY = f"{self.DB_ROOT}auxiliary"# <-- store website files
         # self.DIR_DB_BLOG = os.path.join(self.DIR_DB_AUXILIARY,"blog")# <-- store blog word documents
         # self.DIR_DB_BLOG = f"{self.DB_ROOT}blog"# <-- store blog word documents
         # self.DIR_DB_NEWS = os.path.join(self.DIR_DB_AUXILIARY,"news")# <-- store blog word documents
         # self.DIR_DB_NEWS = f"{self.DB_ROOT}news"# <-- store blog word documents
-        
-        # self.DIR_DB_AUX_IMAGES_PEOPLE = f"{self.DIR_DB_AUXILIARY}/images_people"# <-- store website images of people
-        # self.DIR_DB_AUX_FILES_UTILITY = f"{self.DIR_DB_AUXILIARY}/files_utility"
+
         # self.DIR_DB_AUX_OURA_SLEEP_RESPONSES = f"{self.DIR_DB_AUXILIARY}/oura_sleep_responses"
         
         # paramters for database/dataframe files
@@ -98,6 +106,17 @@ class ConfigBasic():
 
         #Oura Ring
         self.OURA_API_URL_BASE = env_dict.get('OURA_API_URL_BASE')
+
+        #Visual Crossing - weather
+        # self.VISUAL_CROSSING_BASE_URL = env_dict.get('VISUAL_CROSSING_BASE_URL')
+        # https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/
+        self.VISUAL_CROSSING_BASE_URL = "https://weather.visualcrossing.com/"
+        self.VISUAL_CROSSING_TOKEN = env_dict.get('VISUAL_CROSSING_TOKEN')
+
+        #Nominatim API - location
+        self.NOMINATIM_API_URL = "https://nominatim.openstreetmap.org/"
+        # f"https://nominatim.openstreetmap.org/reverse?lat={latitude}&lon={longitude}&format=json"
+
 
 class ConfigLocal(ConfigBasic):
     
