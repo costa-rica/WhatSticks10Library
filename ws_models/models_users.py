@@ -24,6 +24,7 @@ class Users(Base, UserMixin):
     lon = Column(Float(precision=4, decimal_return_scale=None))
     timezone = Column(Text)
     location_permission = Column(Boolean, default=False)
+    location_reoccuring_permission = Column(Boolean, default=False)
     share = Column(Text)
     notes = Column(Text)
     post_blog_permission = Column(Boolean, default=True)
