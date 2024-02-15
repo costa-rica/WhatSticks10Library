@@ -9,11 +9,8 @@ class UserLocationDay(Base):
     __tablename__ = 'user_location_day'
     id = Column(Integer, primary_key = True)
     user_id = Column(Integer, ForeignKey("users.id"))
-    # location_id = Column(Integer, nullable = False)#TODO: should this remain nullable=False?
     location_id = Column(Integer, ForeignKey("locations.id"))#TODO: should this remain nullable=False?
-    # date = Column(Text)
-    # local_time = Column(Text)
-    date_time_user_checkin_utc = Column(DateTime)
+    date_time_utc_user_check_in = Column(DateTime)
     row_type = Column(Text)#user entered or scheduler entered row?
     time_stamp_utc = Column(DateTime, nullable = False, default = datetime.utcnow)
 

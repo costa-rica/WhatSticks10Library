@@ -54,6 +54,7 @@ class ConfigBasic():
         self.APPLE_HEALTH_DIR = os.path.join(self.DATABASE_HELPER_FILES,"apple_health")# <-- store Apple Health compressed
         self.DATAFRAME_FILES_DIR = os.path.join(self.DATABASE_HELPER_FILES,"dataframe_files")# <-- store pkl files for dashbaord data item
         self.OURA_SLEEP_RESPONSES = os.path.join(self.DATABASE_HELPER_FILES,"oura_sleep_responses")
+        self.USER_LOCATION_JSON = os.path.join(self.DATABASE_HELPER_FILES,"user_location_json")
 
         # wsios_helper files
         self.WS_IOS_HELPER_FILES = os.path.join(self.DB_ROOT,"ws_ios_helpers")
