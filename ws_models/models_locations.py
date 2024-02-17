@@ -1,6 +1,6 @@
 from .base import Base
 from sqlalchemy import Column, Integer, String, Text, Float, DateTime, ForeignKey, \
-    Date, JSON
+    Date, JSON, UniqueConstraint
 from datetime import datetime
 from sqlalchemy.orm import relationship
 
@@ -10,14 +10,20 @@ class UserLocationDay(Base):
     id = Column(Integer, primary_key = True)
     user_id = Column(Integer, ForeignKey("users.id"))
     location_id = Column(Integer, ForeignKey("locations.id"))#TODO: should this remain nullable=False?
-    date_time_utc_user_check_in = Column(DateTime)
+    date_utc_user_check_in = Column(Date)
     row_type = Column(Text)#user entered or scheduler entered row?
+    date_time_utc_user_check_in = Column(DateTime)
     time_stamp_utc = Column(DateTime, nullable = False, default = datetime.utcnow)
 
     def __repr__(self):
         return f'UserLocationDay(id: {self.id}, user_id: {self.user_id},' \
-            f'date: {self.date})'
+            f'date_utc_user_check_in: {self.date_utc_user_check_in})'
 
+    # Add a UniqueConstraint to the table definition
+    __table_args__ = (
+        UniqueConstraint('user_id', 'date_utc_user_check_in',  \
+            name='_user_id_AND_date_utc_user_check_in'),
+    )
 
 class Locations(Base):
     __tablename__ = 'locations'
