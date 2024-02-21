@@ -43,6 +43,7 @@ class ConfigBasic():
         self.API_ROOT = os.environ.get('API_ROOT')
         self.APPLE_SERVICE_ROOT = os.environ.get('APPLE_SERVICE_ROOT')
         self.APPLE_SERVICE_11_ROOT = os.environ.get('APPLE_SERVICE_11_ROOT')
+        self.SCHEDULER_SERVICE_11_ROOT = os.environ.get('SCHEDULER_SERVICE_11_ROOT')
         
         # Database
         self.DB_ROOT = os.environ.get('DB_ROOT')
@@ -110,9 +111,9 @@ class ConfigBasic():
         self.OURA_API_URL_BASE = env_dict.get('OURA_API_URL_BASE')
 
         #Visual Crossing - weather
-        # self.VISUAL_CROSSING_BASE_URL = env_dict.get('VISUAL_CROSSING_BASE_URL')
+        self.VISUAL_CROSSING_BASE_URL = env_dict.get('VISUAL_CROSSING_BASE_URL')
         # https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/
-        self.VISUAL_CROSSING_BASE_URL = "https://weather.visualcrossing.com"
+        # self.VISUAL_CROSSING_BASE_URL = "https://weather.visualcrossing.com"
         self.VISUAL_CROSSING_TOKEN = env_dict.get('VISUAL_CROSSING_TOKEN')
 
         #Nominatim API - location

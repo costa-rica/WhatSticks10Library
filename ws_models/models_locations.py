@@ -86,3 +86,9 @@ class WeatherHistory(Base):
     def __repr__(self):
         return f"WeatherHistory(id: {self.id}, date_time: {self.date_time}, " \
             f"location_id: {self.location_id}, temp: {self.temp})"
+    
+        # Add a UniqueConstraint to the table definition
+    __table_args__ = (
+        UniqueConstraint('location_id', 'date_time',  \
+            name='_location_id_AND_date_time'),
+    )
